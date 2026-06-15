@@ -1,0 +1,19 @@
+/* Responsive grid for property cards */
+.properties-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px; /* increased gap between cards */
+  padding: 20px;
+  align-items: start;
+  background: #f6f7fb; /* container background makes gaps visible */
+}
+
+/* Make cards fill the grid cell */
+.properties-container .property-card{
+  width:100%;
+  max-width:none;
+}
+
+@media (max-width:480px){
+  .properties-container{ gap:12px; padding:12px; }
+}
