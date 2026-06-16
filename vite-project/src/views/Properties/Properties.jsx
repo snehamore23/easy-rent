@@ -3,7 +3,7 @@ import { properties as allProperties } from '../../views/data.jsx';
 import PropertyCard from '../../components/PropertyCard/Propertycard';
 import React, { useState, useEffect } from "react";
 import Input from '../../components/Input/Input.jsx';
-import house-image from'../../componnts/properties/
+import houseImage from './house-search.png'
 
 function Properties() {
     const [visibleProperties, setVisibleProperties] = useState(allProperties || []);
@@ -100,7 +100,20 @@ function Properties() {
 
             <div className="properties-container">
                 {visibleProperties.length === 0 ? (
-                    <div>No properties found.</div>
+
+                    <div className="no-results-container">
+                        <img
+                        src={houseImage} 
+                        alt="No Properties Found" 
+                        className="no-result-img"/>
+
+                        <h1 classname="no-result-title">
+                            No Properties Found</h1>
+
+                        <p classname="no-result-message">
+                            Don't lose hope! Try adjusting your search or filter criteria to find the perfect property for you.
+    </p>
+                    </div>
                 ) : (
                     visibleProperties.map((propertyObj) => {
                         const { id, title, city, description, propertyType, size, rating, pricePerMonth, photos } = propertyObj;
