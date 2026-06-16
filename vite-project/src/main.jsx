@@ -1,31 +1,36 @@
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import toast, { Toaster } from 'react-hot-toast';
+// removed react-hot-toast to avoid runtime dependency issues in dev
+// App imports
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Properties from './views/Properties/Properties';
+import PropertyDetail from './views/PropertyDetail/PropertyDetail';
 
 const root = createRoot(document.getElementById("root"));
 
-root.render(
-  <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
-        <Route path="/properties" element={<Properties />} />
-        <Route path="/about" element={<h1>About</h1>} />
-      </Routes>
-    </BrowserRouter>
+try {
+  console.log('APP MOUNT: starting root.render');
+  class ErrorBoundary extends React.Component {
+    constructor(props) { super(props); this.state = { error: null }; }
+    static getDerivedStateFromError(error) { return { error }; }
+    componentDidCatch(error, info) { console.error('ErrorBoundary caught:', error, info); }
+    render() { if (this.state.error) return <div className="app-error">App render error: {String(this.state.error)}</div>; return this.props.children; }
+  }
 
-    <h1>Hot Toast</h1>
-
-    <button
-      onClick={() => {
-        toast.success("This is a success toast!");
-      }}
-    >
-      Click Me
-    </button>
-
-    <Toaster />
-  </>
-);
+  root.render(
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/properties" element={<Properties />} />
+          <Route path="/about" element={<h1>About</h1>} />
+          <Route path="/property/:id" element={<PropertyDetail />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
+  );
+  console.log('APP MOUNT: render completed');
+} catch (err) {
+  console.error('APP MOUNT ERROR:', err && err.stack ? err.stack : err);
+}

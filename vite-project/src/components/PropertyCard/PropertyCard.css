@@ -33,3 +33,9 @@
 .property-card__meta{font-size:12px;color:#666}
 .property-card__price{font-weight:600;margin-top:8px}
 .property-card__rating{font-size:12px;color:#333}
+
+.card-action{
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}

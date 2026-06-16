@@ -1,0 +1,15 @@
+.input-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-field{
+    width: 480px;
+    max-width: 92%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 12px 0;
+}

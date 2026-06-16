@@ -1,4 +1,31 @@
-// Static dataset of 200 properties (generated once)
+import img1 from "../assets/1.jpg";
+import img2 from "../assets/2.jpg";
+import img3 from "../assets/3.jpg";
+import img4 from "../assets/4.jpg";
+import img5 from "../assets/5.jpg";
+import img6 from "../assets/6.jpg";
+import img7 from "../assets/7.jpg";
+import img8 from "../assets/8.jpg";
+import img9 from "../assets/9.jpg";
+import img10 from "../assets/10.jpg";
+import img11 from "../assets/11.jpg";
+import img12 from "../assets/12.jpg";
+import img13 from "../assets/13.jpg";
+import img14 from "../assets/14.jpg";
+import img15 from "../assets/15.jpg";
+import img16 from "../assets/16.jpg";
+import img17 from "../assets/17.jpg";
+import img18 from "../assets/18.jpg";
+import img19 from "../assets/19.jpg";
+import img20 from "../assets/20.jpg";
+import img21 from "../assets/21.jpg";
+import img22 from "../assets/22.jpg";
+import img23 from "../assets/23.jpg";
+
+
+
+
+
 const properties = [
   {
     "id": "prop-1",
@@ -10201,5 +10228,61 @@ const properties = [
   }
 ];
 
-export { properties };
-export default properties;
+// Build an array of available imported images and assign 4-6 random images
+// to each property so every property has at least 4 photos.
+const ALL_IMAGES = [
+  img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16,img17,img18,img19,img20,img21,img22,img23
+];
+
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const propertiesWithPhotos = properties.map((p) => {
+  const pickCount = 4 + Math.floor(Math.random() * 3); // 4-6 images
+  const shuffled = shuffleArray(ALL_IMAGES);
+  return {
+    ...p,
+    photos: shuffled.slice(0, pickCount)
+  };
+});
+
+// Add a `reviewers` array to each property generated from the `reviews` count.
+// Limit generated reviewers per property to avoid very large arrays.
+const propertiesWithReviewers = propertiesWithPhotos.map((p) => {
+  const count = Number.isFinite(p.reviews) ? p.reviews : 0;
+  const limit = Math.min(Math.max(0, count), 10);
+  const sampleComments = [
+    'Very comfortable stay, host was responsive.',
+    'Good location and amenities.',
+    'Decent place for short-term stay.',
+    'Clean and well-maintained property.',
+    'Would recommend to friends.',
+    'A bit noisy but value for money.',
+    'Excellent host and quick responses.',
+    'Pictures matched the property, enjoyed my stay.',
+    'Well-furnished and spacious.',
+    'Minor issues but host handled them promptly.'
+  ];
+
+  const reviewers = Array.from({ length: limit }).map((_, i) => ({
+    id: `${p.id}-rev-${i + 1}`,
+    name: `User ${i + 1}`,
+    rating: Math.round(((p.rating || 4) + (Math.random() * 0.8 - 0.4)) * 10) / 10,
+    comment: sampleComments[i % sampleComments.length],
+    date: new Date(Date.parse(p.listedAt || new Date()) + i * 86400000).toISOString()
+  }));
+
+  return {
+    ...p,
+    reviewers
+  };
+});
+
+export { propertiesWithReviewers as properties };
+export default propertiesWithReviewers;
