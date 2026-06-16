@@ -4,6 +4,9 @@ import PropertyCard from '../../components/PropertyCard/Propertycard';
 import React, { useState, useEffect } from "react";
 import Input from '../../components/Input/Input.jsx';
 import houseImage from './house-search.png'
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+
 
 function Properties() {
     const [visibleProperties, setVisibleProperties] = useState(allProperties || []);
@@ -69,6 +72,7 @@ function Properties() {
 
     return (
         <div>
+            <Navbar />
             <Input
                 placeholder="Search For Properties"
                 value={searchTerm}
@@ -100,19 +104,15 @@ function Properties() {
 
             <div className="properties-container">
                 {visibleProperties.length === 0 ? (
-
-                    <div className="no-results-container">
+                    <div className="no-results">
                         <img
-                        src={houseImage} 
-                        alt="No Properties Found" 
-                        className="no-result-img"/>
-
-                        <h1 classname="no-result-title">
-                            No Properties Found</h1>
-
-                        <p classname="no-result-message">
+                            src={houseImage} 
+                            alt="No Properties Found" 
+                        />
+                        <h1>No Properties Found</h1>
+                        <p>
                             Don't lose hope! Try adjusting your search or filter criteria to find the perfect property for you.
-    </p>
+                        </p>
                     </div>
                 ) : (
                     visibleProperties.map((propertyObj) => {
@@ -134,6 +134,7 @@ function Properties() {
                     })
                 )}
             </div>
+            <Footer />
         </div>
     );
 }

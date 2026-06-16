@@ -1,0 +1,56 @@
+.description{
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #333;
+    font-style:italic
+
+}
+.about-img{
+    height: 350px;
+    margin: 0 auto;
+    display: block;
+}
+
+.mission-section {
+  padding: 50px 20px;
+  background: #f8f9fa;
+}
+
+.mission-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #7e57c2;
+}
+
+.mission-list {
+  list-style: none;
+  padding: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mission-list li {
+  background: #fff;
+  padding: 20px 30px;
+  margin: 15px 0;
+  border-radius: 12px;
+  font-size: 18px;
+  color:#7e57c2;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid #4f46e5;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.mission-list li:hover {
+  transform: translateX(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #f5f7ff;
+}
+
+.mission-list li::before {
+  margin-right: 10px;
+}

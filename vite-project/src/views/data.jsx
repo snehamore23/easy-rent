@@ -10284,5 +10284,19 @@ const propertiesWithReviewers = propertiesWithPhotos.map((p) => {
   };
 });
 
+const FEATURE =[
+  "No Brokerage",
+  "Verified Listings",
+  "24/7 Customer Support",
+  "Easy online Payment",
+  "Flexile Lease Terms",
+  "Wide Range Of Properties",
+  "Transperent Pricing",
+  "Neighborhood Insights",
+  "Agrement Generation",
+
+  
+];
+
 export { propertiesWithReviewers as properties };
 export default propertiesWithReviewers;

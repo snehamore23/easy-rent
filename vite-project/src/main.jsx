@@ -4,6 +4,8 @@ import './index.css';
 // removed react-hot-toast to avoid runtime dependency issues in dev
 // App imports
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './views/Home/Home';
+import About from './views/About/About';
 import Properties from './views/Properties/Properties';
 import PropertyDetail from './views/PropertyDetail/PropertyDetail';
 
@@ -22,9 +24,9 @@ try {
     <ErrorBoundary>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<Home />} />
           <Route path="/properties" element={<Properties />} />
-          <Route path="/about" element={<h1>About</h1>} />
+          <Route path="/about" element={<About />} />
           <Route path="/property/:id" element={<PropertyDetail />} />
         </Routes>
       </BrowserRouter>

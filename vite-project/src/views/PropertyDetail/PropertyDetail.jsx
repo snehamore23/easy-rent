@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import { properties } from '../data.jsx';
 import './PropertyDetail.css';
 import DefaultImage from '../../assets/1.jpg';
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+
+
 import { Check, Plane, Hospital, School, ShoppingCart, Train, MapPin, Droplet, Dumbbell, Car, Zap, Thermometer, Heart } from 'lucide-react';
 function PropertyDetail(){
     const { id } = useParams();
@@ -30,6 +34,7 @@ function PropertyDetail(){
 
     return (
         <div className="property-detail">
+            <Navbar />
             <img src={imageSrc} alt="property" className="property-img"/>
             <div className="photo-thumbs">
                 {(property.photos || []).map((photo, idx) => (
@@ -187,6 +192,7 @@ function PropertyDetail(){
                     <p><strong>Email:</strong> {property.owner?.email ? <a className="owner-link" href={`mailto:${property.owner.email}`}>{property.owner.email}</a> : '—'}</p>
                 </section>
             </section>
+            <Footer />
         </div>
     );
 }
